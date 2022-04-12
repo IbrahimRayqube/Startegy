@@ -5,7 +5,7 @@ using UnityEngine;
 public class IdleBlockMover : MonoBehaviour
 {
     public float speed;
-    Animator blockAnimator;
+    public Animator blockAnimator;
     public bool shouldMove = false;
     public Vector3 initPosition;
     // Start is called before the first frame update

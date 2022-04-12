@@ -13,17 +13,11 @@ public class IdleStrategyTopicBlock : MonoBehaviour
     public float forwardSpeed = -1;
     Vector3 moveDirection;
     public bool moveForward;
-    public Vector3 upperPosition;
-    public Vector3 lowerPosition;
-    public bool isGoingup = true;
-    bool isHovering = false;
-    public float hoveringSpeed = 5f;
     private void Awake()
     {
         SceneController.Instance.idleScreenBlocks.Add(this);
         blockMaterial = GetComponent<Renderer>().material;
         blockMaterial.color = allColors[Random.Range(0, allColors.Length)];
-        isGoingup = true;
         //SceneController.onUserDetected += moveAwayFromCamera;
     }
     void Start()
@@ -71,9 +65,14 @@ public class IdleStrategyTopicBlock : MonoBehaviour
 
     public void startHovering()
     {
-        Debug.Log("StartHovering called");
-        upperPosition = new Vector3(transform.position.x, transform.position.y + Random.Range(0.5f, 1.5f), transform.position.z);
-        lowerPosition = new Vector3(transform.position.x, transform.position.y + Random.Range(-1.5f, -0.5f), transform.position.z);
-        isHovering = true;
+        gameObject.AddComponent<TweenPosition>();
+        TweenPosition tweener = GetComponent<TweenPosition>();
+        tweener.from = transform.position;
+        tweener.to = new Vector3(transform.position.x, transform.position.y + Random.Range(0.1f, 0.3f), transform.position.z);
+        tweener.style = UITweener.Style.PingPong;
+        tweener.delay = Random.Range(0, 1.5f);
+        tweener.enabled = true;
+        transform.parent = null;
+        tweener.PlayForward();
     }
 }

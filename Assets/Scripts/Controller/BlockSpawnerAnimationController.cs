@@ -19,5 +19,7 @@ public class BlockSpawnerAnimationController : MonoBehaviour
     public void onAnimationCompleted()
     {
         SceneController.Instance.blocksMovedOnSides();
+        GetComponentInParent<IdleBlockMover>().blockAnimator.enabled = false;
+        SceneController.Instance.picArea.SetActive(true);
     }
 }

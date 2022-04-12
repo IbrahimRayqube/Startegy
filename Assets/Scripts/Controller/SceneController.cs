@@ -9,11 +9,13 @@ public class SceneController : Singleton<SceneController>
     public List<IdleStrategyTopicBlock> idleScreenBlocks;
     public IdleBlockMover blockMover;
     public GameObject[] hoverers;
+    public GameObject picArea;
+    public UserProfilePicController picController;
+    public MenuController menuController;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -21,7 +23,6 @@ public class SceneController : Singleton<SceneController>
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("space pressed");
             blockMover.speed = 0;
             blockMover.moveBlocks();
             //SceneController.onUserDetected();
@@ -45,6 +46,12 @@ public class SceneController : Singleton<SceneController>
             e.startHovering();
             //e.transform.parent = null;
         }
+    }
+
+    // Show welcome message after user face is detected
+    public void showWelcomeMsg()
+    {
+        
     }
 
 }
