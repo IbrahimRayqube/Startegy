@@ -29,11 +29,11 @@ public class IdleStrategyTopicBlock : MonoBehaviour
     {
         if(moveForward)
             transform.Translate(Vector3.forward * Time.deltaTime * forwardSpeed);
-        //if (isMovingAwayFromCamera)
-        //{
-        //    transform.Translate(new Vector3(moveDirection.x, moveDirection.y, 0) * Time.deltaTime * moveSpeed);
-        //}
-        
+        if (isMovingAwayFromCamera)
+        {
+            transform.Translate(new Vector3(moveDirection.x, moveDirection.y, 0) * Time.deltaTime * moveSpeed);
+        }
+
     }
 
     public void resetMaterial()
@@ -52,11 +52,11 @@ public class IdleStrategyTopicBlock : MonoBehaviour
     }
 
 
-    public void moveAwayFromCamera()
-    {
-        moveDirection = transform.position - Camera.main.transform.position;
-        isMovingAwayFromCamera = true;
-    }
+    //public void moveAwayFromCamera()
+    //{
+    //    moveDirection = transform.position - Camera.main.transform.position;
+    //    isMovingAwayFromCamera = true;
+    //}
 
     private void OnDestroy()
     {
@@ -74,5 +74,21 @@ public class IdleStrategyTopicBlock : MonoBehaviour
         tweener.enabled = true;
         transform.parent = null;
         tweener.PlayForward();
+    }
+
+    public void stopHovering()
+    {
+        TweenPosition temp = GetComponent<TweenPosition>();
+        temp.enabled = false;
+        Destroy(temp);
+        //transform.parent = SceneController.Instance.blockspawner.transform;
+        moveOutOfScreen();
+    }
+
+    public void moveOutOfScreen()
+    {
+        moveDirection = transform.position - Vector3.zero;
+        moveSpeed = 2;
+        isMovingAwayFromCamera = true;
     }
 }

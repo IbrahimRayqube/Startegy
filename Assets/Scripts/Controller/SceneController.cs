@@ -12,6 +12,7 @@ public class SceneController : Singleton<SceneController>
     public GameObject picArea;
     public UserProfilePicController picController;
     public MenuController menuController;
+    public BlockSpawnerAnimationController blockspawner;
 
     // Start is called before the first frame update
     void Start()
@@ -48,10 +49,16 @@ public class SceneController : Singleton<SceneController>
         }
     }
 
-    // Show welcome message after user face is detected
-    public void showWelcomeMsg()
+    public void moveBlocksOutOfScreen()
     {
-        
+        foreach (IdleStrategyTopicBlock e in idleScreenBlocks)
+        {
+            e.stopHovering();
+            //e.transform.parent = null;
+        }
     }
+
+    // Show welcome message after user face is detected
+    
 
 }
