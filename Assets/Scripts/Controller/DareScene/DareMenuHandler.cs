@@ -9,6 +9,8 @@ public class DareMenuHandler : Singleton<DareMenuHandler>
     public GameObject dareMessage;
     public GameObject dMsg, aMsg, rMsg, eMsg;
     public bool stopShowingLetterMsgs = false;
+    public GameObject dInsightMsg, aInsightMsg;
+    public GameObject dInsightDetail, aInsightDetail;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,5 +51,15 @@ public class DareMenuHandler : Singleton<DareMenuHandler>
             yield return new WaitForSeconds(3);
             eMsg.GetComponentInChildren<textFadeInNOut>().fadeOut();
         }
+        dareMessage.GetComponentInChildren<textFadeInNOut>().fadeOut();
+        DareSceneHandler.Instance.slideCubeHolder();
+        yield return new WaitForSeconds(2);
+        dInsightMsg.GetComponentInChildren<textFadeInNOut>().fadeIn();
+        DareSceneHandler.Instance.showDInsightHands();
+        dInsightDetail.GetComponentInChildren<textFadeInNOut>().fadeIn();
+        yield return new WaitForSeconds(4);
+        dInsightMsg.GetComponentInChildren<textFadeInNOut>().fadeOut();
+        DareSceneHandler.Instance.slideDInsight();
+        DareSceneHandler.Instance.showAInsightHands();
     }
 }
