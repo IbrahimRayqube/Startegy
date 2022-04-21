@@ -9,7 +9,8 @@ public class DareSceneHandler : Singleton<DareSceneHandler>
     public Color[] cubeColor;
     public GameObject cubeHolder;
     public GameObject dInsight, aInsight, rInsight, eInsight ;
-    public GameObject[] dInsightHands, AInsightHands;
+    public GameObject[] dInsightHands, AInsightHands, RInsightHands, EInsightHands;
+    public GameObject Mission, CSR, Vision;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,17 +48,32 @@ public class DareSceneHandler : Singleton<DareSceneHandler>
     public void slideDInsight()
     {
         dInsight.SetActive(false);
-        Destroy(dInsight.gameObject.GetComponent<TweenPosition>());
-        dInsight.gameObject.AddComponent<TweenPosition>();
-        TweenPosition tweener = dInsight.GetComponent<TweenPosition>();
-        tweener.from = dInsight.transform.position;
-        tweener.to = new Vector3(-30, 0, 0);
-        tweener.style = UITweener.Style.Once;
-        //tweener.delay = Random.Range(0, 1.5f);
-        tweener.enabled = false;
-        transform.parent = null;
-        tweener.PlayForward();
+        //Destroy(dInsight.gameObject.GetComponent<TweenPosition>());
+        //dInsight.gameObject.AddComponent<TweenPosition>();
+        //TweenPosition tweener = dInsight.GetComponent<TweenPosition>();
+        //tweener.from = dInsight.transform.position;
+        //tweener.to = new Vector3(-30, 0, 0);
+        //tweener.style = UITweener.Style.Once;
+        ////tweener.delay = Random.Range(0, 1.5f);
+        //tweener.enabled = false;
+        //transform.parent = null;
+        //tweener.PlayForward();
         aInsight.GetComponent<TweenPosition>().enabled = true;
+    }
+
+    public void slideAInsight()
+    {
+        aInsight.SetActive(false);
+        rInsight.GetComponent<TweenPosition>().enabled = true;
+    }
+    public void slideRInsight()
+    {
+        rInsight.SetActive(false);
+        eInsight.GetComponent<TweenPosition>().enabled = true;
+    }
+    public void slideEInsight()
+    {
+        eInsight.SetActive(false);
     }
 
     public void showDInsightHands()
@@ -73,6 +89,26 @@ public class DareSceneHandler : Singleton<DareSceneHandler>
     public void showAInsightHands()
     {
         foreach (GameObject temp in AInsightHands)
+        {
+            temp.SetActive(true);
+            temp.GetComponent<TweenPosition>().enabled = true;
+            temp.GetComponent<TweenPosition>().PlayForward();
+        }
+    }
+
+    public void showRInsightHands()
+    {
+        foreach (GameObject temp in RInsightHands)
+        {
+            temp.SetActive(true);
+            temp.GetComponent<TweenPosition>().enabled = true;
+            temp.GetComponent<TweenPosition>().PlayForward();
+        }
+    }
+
+    public void showEInsightHands()
+    {
+        foreach (GameObject temp in EInsightHands)
         {
             temp.SetActive(true);
             temp.GetComponent<TweenPosition>().enabled = true;

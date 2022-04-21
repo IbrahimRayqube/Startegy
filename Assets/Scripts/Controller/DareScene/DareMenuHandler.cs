@@ -9,12 +9,12 @@ public class DareMenuHandler : Singleton<DareMenuHandler>
     public GameObject dareMessage;
     public GameObject dMsg, aMsg, rMsg, eMsg;
     public bool stopShowingLetterMsgs = false;
-    public GameObject dInsightMsg, aInsightMsg;
-    public GameObject dInsightDetail, aInsightDetail;
+    public GameObject dInsightMsg, aInsightMsg, rInsightMsg, eInsightMsg;
+    public GameObject dInsightDetail, aInsightDetail, rInsightDetail, eInsightDetail;
     // Start is called before the first frame update
     void Start()
     {
-        
+        screenFade.GetComponent<ImageFadeInNOut>().fadeOut();
     }
 
     // Update is called once per frame
@@ -59,7 +59,33 @@ public class DareMenuHandler : Singleton<DareMenuHandler>
         dInsightDetail.GetComponentInChildren<textFadeInNOut>().fadeIn();
         yield return new WaitForSeconds(4);
         dInsightMsg.GetComponentInChildren<textFadeInNOut>().fadeOut();
+        dInsightDetail.GetComponentInChildren<textFadeInNOut>().fadeOut();
+        yield return new WaitForSeconds(2);
         DareSceneHandler.Instance.slideDInsight();
+        aInsightMsg.GetComponentInChildren<textFadeInNOut>().fadeIn();
         DareSceneHandler.Instance.showAInsightHands();
+        aInsightDetail.GetComponentInChildren<textFadeInNOut>().fadeIn();
+        yield return new WaitForSeconds(4);
+        aInsightMsg.GetComponentInChildren<textFadeInNOut>().fadeOut();
+        aInsightDetail.GetComponentInChildren<textFadeInNOut>().fadeOut();
+        yield return new WaitForSeconds(2);
+        DareSceneHandler.Instance.slideAInsight();
+        rInsightMsg.GetComponentInChildren<textFadeInNOut>().fadeIn();
+        DareSceneHandler.Instance.showRInsightHands();
+        rInsightDetail.GetComponentInChildren<textFadeInNOut>().fadeIn();
+        yield return new WaitForSeconds(4);
+        rInsightMsg.GetComponentInChildren<textFadeInNOut>().fadeOut();
+        rInsightDetail.GetComponentInChildren<textFadeInNOut>().fadeOut();
+        yield return new WaitForSeconds(2);
+        DareSceneHandler.Instance.slideRInsight();
+        eInsightMsg.GetComponentInChildren<textFadeInNOut>().fadeIn();
+        DareSceneHandler.Instance.showEInsightHands();
+        eInsightDetail.GetComponentInChildren<textFadeInNOut>().fadeIn();
+        yield return new WaitForSeconds(4);
+        eInsightMsg.GetComponentInChildren<textFadeInNOut>().fadeOut();
+        eInsightDetail.GetComponentInChildren<textFadeInNOut>().fadeOut();
+        yield return new WaitForSeconds(2);
+        DareSceneHandler.Instance.slideEInsight();
+        DareSceneHandler.Instance.Mission.SetActive(true);
     }
 }

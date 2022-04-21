@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour
 {
@@ -66,6 +67,9 @@ public class TutorialController : MonoBehaviour
             inspireText.GetComponent<textFadeInNOut>().fadeOut();
             yield return new WaitForSeconds(2);
         }
+        SceneController.Instance.menuController.showOverlay();
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(1);
     }
 
     public void clearTextures()

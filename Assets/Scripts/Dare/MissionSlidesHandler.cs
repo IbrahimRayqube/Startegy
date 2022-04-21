@@ -48,5 +48,7 @@ public class MissionSlidesHandler : MonoBehaviour
             allSlides[i].removeFromScreen();
             yield return new WaitForSeconds(1);
         }
+        DareSceneHandler.Instance.CSR.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 }

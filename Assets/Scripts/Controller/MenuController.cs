@@ -5,6 +5,7 @@ using UnityEngine;
 public class MenuController : MonoBehaviour
 {
     public GameObject TutorialScreen;
+    public GameObject overlay;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +21,10 @@ public class MenuController : MonoBehaviour
     public void enableTutorialScreen()
     {
         TutorialScreen.SetActive(true);
+    }
+
+    public void showOverlay()
+    {
+        overlay.GetComponent<ImageFadeInNOut>().fadeIn();
     }
 }

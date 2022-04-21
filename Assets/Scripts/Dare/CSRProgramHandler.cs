@@ -63,5 +63,7 @@ public class CSRProgramHandler : MonoBehaviour
             allSlides[i].removeFromScreen();
             yield return new WaitForSeconds(1);
         }
+        DareSceneHandler.Instance.Vision.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 }
